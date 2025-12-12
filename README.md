@@ -13,9 +13,7 @@ This repository is primarily C (≈95.7%) with a small Makefile portion.
 - [Usage](#usage)
 - [Examples](#examples)
 - [Testing](#testing)
-- [Project structure](#project-structure)
 - [Contributing](#contributing)
-- [License](#license)
 - [Author](#author)
 
 ## Features
@@ -36,7 +34,6 @@ The implementation supports the typical conversion specifiers required by many "
 - `%x` / `%X` — unsigned hexadecimal (lowercase / uppercase)
 - `%%` — literal percent sign
 
-If this repository contains more or fewer specifiers, consult `ft_printf.h` and the source for exact coverage.
 
 ## Requirements
 
@@ -59,7 +56,6 @@ Typical Makefile targets you can expect:
 - `make fclean` — remove object files and binaries
 - `make re` — rebuild from scratch
 
-If the repository produces a static library (e.g., `libftprintf.a`) or an executable, `make` will create it in the project root (see the Makefile for exact target names and outputs).
 
 ## Usage
 
@@ -70,7 +66,7 @@ Include the header and call `ft_printf` the same way you use standard `printf`:
 
 int main(void)
 {
-    int n = ft_printf("Hello %s!\nNumber: %d, Hex: %#x\n", "world", 42, 42);
+    int n = ft_printf("Hello %s!\nNumber: %d, Hex: %x\n", "world", 42, 42);
     (void)n; // number of characters printed
     return 0;
 }
@@ -79,10 +75,9 @@ int main(void)
 Compile (example):
 
 ```sh
-gcc -Wall -Wextra -Werror -I. -L. -lftprintf main.c -o example
+cc -Wall -Wextra -Werror main.c libftprintf.a 
 ```
 
-Adjust the include and link flags according to the Makefile and produced artifacts (library or direct object files).
 
 ## Examples
 
@@ -111,17 +106,6 @@ There may be no automated test suite included. To test manually:
 2. Build small test programs that call `ft_printf` with various format strings.
 3. Compare outputs with the standard `printf` for the supported specifiers.
 
-If you want automated regression checks, consider creating tests that redirect stdout and compare against expected outputs (or the output of `printf`).
-
-## Project structure (typical)
-
-- src/           — implementation (.c) files
-- include/       — header files (e.g., `ft_printf.h`)
-- Makefile       — build rules
-- tests/         — manual test programs (optional)
-- README.md      — this file
-
-Open the repository to view the exact file layout and names.
 
 ## Contributing
 
@@ -131,17 +115,7 @@ Contributions are welcome. If you plan to extend behavior or add more specifiers
 - Add tests for new behavior.
 - Update the README to document new features.
 
-Please open issues or pull requests on GitHub.
-
-## License
-
-This project is provided for educational purposes. Add a license file (e.g., MIT) if you want to make licensing explicit.
 
 ## Author
 
 Abdelkrim Zidouh — GitHub: @AbdelkrimZidouh
-
-If you'd like, I can:
-- open a README file in the repository with this content,
-- tailor the README to match the exact function names and Makefile targets in your repo (I can read files in the repo to extract exact header & targets first),
-- or add examples/tests to the repo.
