@@ -1,5 +1,4 @@
-This project has been created as part
-of the 42 curriculum by azidouh
+*This project has been created as part of the 42 curriculum by azidouh*
 
 # ft_printf
 
