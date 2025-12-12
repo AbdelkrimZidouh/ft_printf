@@ -1,3 +1,6 @@
+This project has been created as part
+of the 42 curriculum by azidouh
+
 # ft_printf
 
 ft_printf is an educational reimplementation of the standard C `printf` function. It provides a compact, easy-to-read implementation that supports a useful subset of format specifiers commonly required in small projects and learning exercises.
