@@ -147,42 +147,5 @@ The implementation uses the standard C variadic argument mechanism:
 - `va_end(args)` — Clean up argument list
 
 
-### Core Functions
-
-#### `ft_printf(const char *fmt, ...)`
-**Purpose:** Entry point that parses the format string. 
-
-**Algorithm:**
-1. Validate input (check for NULL format string and write errors)
-2. Iterate character by character through the format string
-3. When encountering `%`:
-   - Validate that there's a character after `%` (prevents undefined behavior)
-   - Call `ft_print_formatted` with the specifier
-4. For regular characters, call `ft_putchar` directly
-5. Return total character count
-
-**Edge cases handled:**
-- NULL format string → return -1
-- Write error detected via `write(1, "", 0)` → return -1
-- Trailing `%` without specifier → return -1
-
-#### `ft_print_formatted(char specifier, va_list ap)`
-**Purpose:** Dispatcher that routes to appropriate output function based on format specifier.
-
-**Algorithm:**
-Uses a simple if-else chain to match the specifier character and call the corresponding output function with the appropriate `va_arg` extraction.
-
-**Design choice:** The base conversion functions (`ft_putnbr_base`) are parameterized with a base string, allowing code reuse for decimal (`"0123456789"`), lowercase hex (`"0123456789abcdef"`), and uppercase hex (`"0123456789ABCDEF"`).
-
-#### `ft_putnbr_base(long n, char *base)`
-**Purpose:** Universal numeric conversion and output function.
-
-**Algorithm:**
-1. Handle negative numbers (print '-', convert to positive)
-2. Recursively divide by base length
-3. Output each digit using base string as lookup table
-
-**Why it works:** This approach allows decimal, hexadecimal (both cases), and potentially other bases to share the same implementation.
-
 
 
