@@ -159,6 +159,6 @@ The implementation uses the standard C variadic argument mechanism:
 
 
 ### Testing Resources
-- [Francinette]([https://github.com/cacharle/ft_printf_test](https://github.com/xicodomingues/francinette)) - Another popular tester
+- [Francinette](https://github.com/xicodomingues/francinette]) - popular tester
 
 
