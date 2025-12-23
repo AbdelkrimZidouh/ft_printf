@@ -43,10 +43,8 @@ The implementation supports the common conversion specifiers used in many "ft_pr
 - This implementation focuses on the core specifiers listed above. It may not support:
   - All flags (`-`, `+`, ` `, `0`, `#`)
   - Field width or precision handling for every specifier
-  - Length modifiers beyond the typical int/unsigned long handling required for the supported specifiers
-- Behavior for edge cases follows the implementation choices in source — consult the source files for exact behavior.
+  - Behavior for edge cases follows the implementation choices in source — consult the source files for exact behavior.
 
-If you plan to extend support (flags, width, precision, locale-aware formatting), please add tests and document the changes in this README.
 
 ## Requirements
 
