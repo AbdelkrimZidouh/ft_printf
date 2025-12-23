@@ -146,8 +146,6 @@ The implementation uses the standard C variadic argument mechanism:
 - `va_arg(args, type)` — Extract next argument of specified type
 - `va_end(args)` — Clean up argument list
 
-#### 2. **Character Counter**
-A simple `int len` variable accumulates the total number of characters written throughout the execution.
 
 ### Core Functions
 
@@ -186,19 +184,5 @@ Uses a simple if-else chain to match the specifier character and call the corres
 
 **Why it works:** This approach allows decimal, hexadecimal (both cases), and potentially other bases to share the same implementation.
 
-### Complexity Analysis
 
-- **Time Complexity:** O(n), where n is the length of the format string
-- **Space Complexity:** O(1) auxiliary space (recursive calls for number printing use O(log n) stack space where n is the number being printed)
 
-### Design Decisions
-
-1. **No buffering:** Each character/string is written immediately via `write()` system call
-2. **Recursion for numbers:** Simplifies digit extraction and printing in correct order
-3. **Base string parameterization:** Reduces code duplication for different numeric bases
-4. **Error propagation:** Write errors are detected early and propagated via return value
-
-## Resources
-
-Current Date and Time (UTC - YYYY-MM-DD HH:MM:SS formatted): 2025-12-23 09:44:53
-Current User's Login: AbdelkrimZidouh
