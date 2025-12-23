@@ -15,10 +15,7 @@ This repository is primarily C (≈95.7%) and includes a Makefile to build the l
 - [Build](#build)
 - [Usage](#usage)
 - [Examples](#examples)
-- [Testing](#testing)
-- [Contributing](#contributing)
-- [License](#license)
-- [Author](#author)
+
 
 ## Features
 
@@ -109,45 +106,7 @@ ft_printf returns the number of characters printed (or a negative value on error
 - ft_printf("Percent: %%\n");
   - Output: Percent: %
 
-## Testing
 
-There is no automated test suite included by default. Suggested manual test approach:
 
-1. Build the library/executable with `make`.
-2. Create small test programs that call `ft_printf` with a variety of format strings and arguments.
-3. Compare the output and return values with the standard `printf` for the supported specifiers.
-   - A simple script that compiles and runs both the standard printf version and the ft_printf version and diffs their outputs is helpful.
-4. Add unit tests or small programs to exercise edge cases: large integers, zero, negative numbers, NULL pointers for `%s`, etc.
 
-If you add automated tests (make a `tests/` directory or use a testing framework), please include instructions to run them in this README.
 
-## Contributing
-
-Contributions are welcome. If you want to extend `ft_printf` or improve the project:
-
-- Follow the existing coding style visible in the source files.
-- Add tests that cover new behavior and edge cases.
-- Update this README to document features you add (flags, width, precision, new specifiers).
-- Open a pull request with a clear description of the changes and why they're needed.
-
-Guidelines:
-- Keep functions small and well-documented.
-- Ensure code compiles with `-Wall -Wextra -Werror`.
-- Prefer clarity and correctness over clever but opaque solutions.
-
-## License
-
-Specify a license for the repository if you want others to reuse or contribute. If you do not currently have a license, consider adding one (for example, MIT or BSD). Without an explicit license, reuse is restricted.
-
-## Author
-
-Abdelkrim Zidouh — GitHub: @AbdelkrimZidouh
-
----
-
-If you'd like, I can:
-- Tailor this README to be more concise or more detailed.
-- Add a "How it works" section explaining the implementation approach.
-- Produce example test programs and a small test script that diffs output against the system printf.
-
-Which of these would you like next?
