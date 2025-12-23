@@ -154,85 +154,11 @@ The implementation uses the standard C variadic argument mechanism:
 #### C Standard Library
 - [printf man page](https://man7.org/linux/man-pages/man3/printf.3.html) - Complete reference for printf format specifiers
 - [stdarg. h man page](https://man7.org/linux/man-pages/man3/stdarg.3.html) - Variadic function documentation
-- [C99 Standard - 7.19.6.1](http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1256.pdf) - Official fprintf specification (PDF)
 
-### Variadic Functions
 
-- [GNU C Manual: Variadic Functions](https://www.gnu.org/software/libc/manual/html_node/Variadic-Functions.html)
-- [cppreference: Variadic Functions](https://en.cppreference.com/w/c/variadic)
-- [Learn C:  Variable Arguments](https://www.learn-c.org/en/Variable_Arguments)
 
-**Key concepts covered in implementation:**
-- `va_list` type for argument list
-- `va_start(ap, last_arg)` - initialize argument pointer
-- `va_arg(ap, type)` - retrieve next argument
-- `va_end(ap)` - cleanup
-
-### Number Base Conversion
-
-- [GeeksforGeeks: Base Conversion](https://www.geeksforgeeks.org/convert-base-decimal-vice-versa/)
-- [Khan Academy: Number Systems & Base Conversion](https://www.khanacademy.org/computing/computer-science/algorithms/algorithms-more-learning/a/number-bases)
-- [Binary to Hexadecimal Conversion](https://www.rapidtables.com/convert/number/binary-to-hex.html)
-
-**Relevant to:**
-- `ft_putnbr_base()` - converts numbers to any base (decimal, hex, etc.)
-- `ft_puthex()` - specialized hexadecimal conversion for pointers
-
-### Format Specifiers
-
-- [printf Format Specifiers Cheatsheet](https://alvinalexander.com/programming/printf-format-cheat-sheet/)
-- [Format Specifiers in C](https://www.geeksforgeeks.org/format-specifiers-in-c/)
-- [C printf Format Reference](https://cplusplus.com/reference/cstdio/printf/)
-
-**Implemented specifiers:**
-- `%c` - character
-- `%s` - string
-- `%p` - pointer
-- `%d`, `%i` - signed decimal
-- `%u` - unsigned decimal
-- `%x`, `%X` - hexadecimal
-
-### Recursion
-
-- [Recursion in C](https://www.geeksforgeeks.org/recursion-in-c/)
-- [Understanding Recursion](https://www.freecodecamp.org/news/understanding-recursion-in-programming/)
-
-**Used in:**
-- `ft_putnbr_base()` - recursive digit printing
-- `ft_puthex()` - recursive hexadecimal conversion
-
-### Memory and Pointers
-
-- [Pointers in C](https://www.geeksforgeeks.org/c-pointers/)
-- [Understanding Pointer Arithmetic](https://www.learncpp.com/cpp-tutorial/pointer-arithmetic-and-array-indexing/)
-- [stdint.h Types](https://en.cppreference.com/w/c/types/integer) - `uintptr_t`, `unsigned long` for pointer conversion
-
-**Relevant to:**
-- `ft_putptr()` - printing pointer addresses
-- Proper casting:  `void*` → `unsigned long`
 
 ### Testing Resources
+- [Francinette]([https://github.com/cacharle/ft_printf_test](https://github.com/xicodomingues/francinette)) - Another popular tester
 
-- [42 File Checker](https://github.com/jgigault/42FileChecker) - Automated testing for 42 projects
-- [ft_printf_tester](https://github.com/Tripouille/printfTester) - Community printf tester
-- [printf-unit-test](https://github.com/cacharle/ft_printf_test) - Another popular tester
-
-### 42 Network Resources
-
-- [42 Docs - ft_printf](https://harm-smits.github.io/42docs/projects/ft_printf) - Project guide
-- [42 Evaluators Guide](https://github.com/Binary-Hackers/42_Subjects) - Subject PDFs
-
-### Additional Learning
-
-- [Write system call](https://man7.org/linux/man-pages/man2/write.2.html) - Low-level output function used in implementation
-- [ASCII Table](https://www.asciitable.com/) - Character reference for `%c` specifier
-- [Two's Complement](https://www.cs.cornell.edu/~tomf/notes/cps104/twoscomp.html) - Understanding negative number representation
-
-### Related 42 Projects
-
-Building on ft_printf skills: 
-- **ft_printf** ← *You are here*
-- **get_next_line** - File reading with static variables
-- **push_swap** - Algorithm optimization
-- **pipex** - Process management and pipes
 
