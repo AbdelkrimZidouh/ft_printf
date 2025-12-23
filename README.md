@@ -25,7 +25,6 @@ This repository is primarily C (≈95.7%) and includes a Makefile to build the l
 - Small, readable implementation of `ft_printf` for educational purposes.
 - Prints formatted output to `stdout`.
 - Returns the number of characters printed (same convention as `printf`).
-- Focused on correctness for a core subset of specifiers rather than full printf compliance.
 
 ## Supported conversions
 
