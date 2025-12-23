@@ -2,7 +2,7 @@
 
 # ft_printf
 
-ft_printf is an educational reimplementation of the standard C `printf` function. It provides a compact, easy-to-read implementation that supports a useful subset of format specifiers commonly require[...]
+ft_printf is an educational reimplementation of the standard C `printf` function. It provides a compact, easy-to-read implementation that supports a useful subset of format specifiers commonly required in small projects and learning exercises.
 
 This repository is primarily C (≈95.7%) and includes a Makefile to build the library/executable.
 
@@ -57,3 +57,148 @@ To build the project:
 
 ```sh
 make
+```
+
+Common Makefile targets:
+
+- `make` or `make all` — build the library / executable
+- `make clean` — remove object files
+- `make fclean` — remove object files and binaries
+- `make re` — rebuild from scratch
+
+Example compile command for a test program using the produced library or object files:
+
+```sh
+cc -Wall -Wextra -Werror main.c libftprintf.a
+```
+
+(Adjust the link line if your Makefile produces different artifacts, e.g., a static library or an object file.)
+
+## Usage
+
+Include the public header and call `ft_printf` similarly to the standard `printf`:
+
+```c
+#include "ft_printf.h"
+
+int main(void)
+{
+    int printed = ft_printf("Hello %s!\nNumber: %d, Hex: %x\n", "world", 42, 42);
+    (void)printed; /* printed holds the number of characters output */
+    return 0;
+}
+```
+
+ft_printf returns the number of characters printed (or a negative value on error depending on implementation details in the source).
+
+## Examples
+
+- ft_printf("Hello %s\n", "Alice");
+  - Output: Hello Alice
+
+- ft_printf("Char: %c, Int: %d, Unsigned: %u\n", 'A', -123, 123);
+  - Output: Char: A, Int: -123, Unsigned: 123
+
+- ft_printf("Pointer: %p\n", ptr);
+  - Output: Pointer: 0x7ffee0bff6a8 (actual value will vary)
+
+## Algorithm and Data Structure Explanation
+
+### Overview
+
+The `ft_printf` implementation follows a simple yet efficient parsing and dispatch algorithm. The core logic consists of three main components:
+
+1. **Main parser** (`ft_printf`)
+2. **Format specifier dispatcher** (`ft_print_formatted`)
+3. **Output functions** (various `ft_put*` functions)
+
+### Algorithm Flow
+
+```
+ft_printf(format, ...)
+    │
+    ├─ Initialize va_list for variadic arguments
+    │
+    ├─ Iterate through format string
+    │   │
+    │   ├─ Regular character?  → Print directly with ft_putchar
+    │   │
+    │   └─ Found '%'? → Call ft_print_formatted with next character
+    │       │
+    │       └─ Dispatch based on specifier: 
+    │           ├─ 'c' → ft_putchar(char)
+    │           ├─ 's' → ft_putstr(char *)
+    │           ├─ 'p' → ft_putptr(void *)
+    │           ├─ 'd'/'i' → ft_putnbr_base(int, "0123456789")
+    │           ├─ 'u' → ft_putnbr_base(unsigned, "0123456789")
+    │           ├─ 'x' → ft_putnbr_base(unsigned, "0123456789abcdef")
+    │           ├─ 'X' → ft_putnbr_base(unsigned, "0123456789ABCDEF")
+    │           └─ '%' → ft_putchar('%')
+    │
+    └─ Return total characters printed
+```
+
+### Key Data Structures
+
+#### 1. **va_list** (from `<stdarg.h>`)
+The implementation uses the standard C variadic argument mechanism: 
+- `va_start(args, fmt)` — Initialize argument pointer
+- `va_arg(args, type)` — Extract next argument of specified type
+- `va_end(args)` — Clean up argument list
+
+#### 2. **Character Counter**
+A simple `int len` variable accumulates the total number of characters written throughout the execution.
+
+### Core Functions
+
+#### `ft_printf(const char *fmt, ...)`
+**Purpose:** Entry point that parses the format string. 
+
+**Algorithm:**
+1. Validate input (check for NULL format string and write errors)
+2. Iterate character by character through the format string
+3. When encountering `%`:
+   - Validate that there's a character after `%` (prevents undefined behavior)
+   - Call `ft_print_formatted` with the specifier
+4. For regular characters, call `ft_putchar` directly
+5. Return total character count
+
+**Edge cases handled:**
+- NULL format string → return -1
+- Write error detected via `write(1, "", 0)` → return -1
+- Trailing `%` without specifier → return -1
+
+#### `ft_print_formatted(char specifier, va_list ap)`
+**Purpose:** Dispatcher that routes to appropriate output function based on format specifier.
+
+**Algorithm:**
+Uses a simple if-else chain to match the specifier character and call the corresponding output function with the appropriate `va_arg` extraction.
+
+**Design choice:** The base conversion functions (`ft_putnbr_base`) are parameterized with a base string, allowing code reuse for decimal (`"0123456789"`), lowercase hex (`"0123456789abcdef"`), and uppercase hex (`"0123456789ABCDEF"`).
+
+#### `ft_putnbr_base(long n, char *base)`
+**Purpose:** Universal numeric conversion and output function.
+
+**Algorithm:**
+1. Handle negative numbers (print '-', convert to positive)
+2. Recursively divide by base length
+3. Output each digit using base string as lookup table
+
+**Why it works:** This approach allows decimal, hexadecimal (both cases), and potentially other bases to share the same implementation.
+
+### Complexity Analysis
+
+- **Time Complexity:** O(n), where n is the length of the format string
+- **Space Complexity:** O(1) auxiliary space (recursive calls for number printing use O(log n) stack space where n is the number being printed)
+
+### Design Decisions
+
+1. **No buffering:** Each character/string is written immediately via `write()` system call
+2. **Recursion for numbers:** Simplifies digit extraction and printing in correct order
+3. **Base string parameterization:** Reduces code duplication for different numeric bases
+4. **Error propagation:** Write errors are detected early and propagated via return value
+
+## Resources
+
+Current Date and Time (UTC - YYYY-MM-DD HH:MM:SS formatted): 2025-12-23 09:44:53
+Current User's Login: AbdelkrimZidouh
