@@ -2,7 +2,7 @@
 
 # ft_printf
 
-ft_printf is an educational reimplementation of the standard C `printf` function. It provides a compact, easy-to-read implementation that supports a useful subset of format specifiers commonly required in small projects and learning exercises.
+ft_printf is an educational reimplementation of the standard C `printf` function. It provides a compact, easy-to-read implementation that supports a useful subset of format specifiers commonly require[...]
 
 This repository is primarily C (≈95.7%) and includes a Makefile to build the library/executable.
 
@@ -15,6 +15,8 @@ This repository is primarily C (≈95.7%) and includes a Makefile to build the l
 - [Build](#build)
 - [Usage](#usage)
 - [Examples](#examples)
+- [Algorithm and Data Structure Explanation](#algorithm-and-data-structure-explanation)
+- [Resources](#resources)
 
 
 ## Features
@@ -55,58 +57,3 @@ To build the project:
 
 ```sh
 make
-```
-
-Common Makefile targets:
-
-- `make` or `make all` — build the library / executable
-- `make clean` — remove object files
-- `make fclean` — remove object files and binaries
-- `make re` — rebuild from scratch
-
-Example compile command for a test program using the produced library or object files:
-
-```sh
-cc -Wall -Wextra -Werror main.c libftprintf.a
-```
-
-(Adjust the link line if your Makefile produces different artifacts, e.g., a static library or an object file.)
-
-## Usage
-
-Include the public header and call `ft_printf` similarly to the standard `printf`:
-
-```c
-#include "ft_printf.h"
-
-int main(void)
-{
-    int printed = ft_printf("Hello %s!\nNumber: %d, Hex: %x\n", "world", 42, 42);
-    (void)printed; /* printed holds the number of characters output */
-    return 0;
-}
-```
-
-ft_printf returns the number of characters printed (or a negative value on error depending on implementation details in the source).
-
-## Examples
-
-- ft_printf("Hello %s\n", "Alice");
-  - Output: Hello Alice
-
-- ft_printf("Char: %c, Int: %d, Unsigned: %u\n", 'A', -123, 123);
-  - Output: Char: A, Int: -123, Unsigned: 123
-
-- ft_printf("Pointer: %p\n", ptr);
-  - Output: Pointer: 0x7ffee0bff6a8 (actual value will vary)
-
-- ft_printf("Hex: %x %X\n", 255, 255);
-  - Output: Hex: ff FF
-
-- ft_printf("Percent: %%\n");
-  - Output: Percent: %
-
-
-
-
-
